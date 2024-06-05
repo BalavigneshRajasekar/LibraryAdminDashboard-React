@@ -2,3 +2,12 @@
   width: 100%;
   background-color: red;
 }
+.btn1 {
+  width: 400px;
+}
+.table {
+  background-color: aqua;
+}
+* {
+  font-family: sans-serif;
+}
