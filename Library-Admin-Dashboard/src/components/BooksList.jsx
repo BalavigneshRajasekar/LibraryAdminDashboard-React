@@ -6,9 +6,8 @@ function BooksList(props) {
     <div>
       {data.length > 0 ? (
         <table className="table table-striped ">
-          <thead>
+          <thead className="table-warning">
             <tr className="text-center">
-              <th>S.no</th>
               <th>Title</th>
               <th>Author</th>
               <th>Published</th>
@@ -19,17 +18,15 @@ function BooksList(props) {
           <tbody>
             {data.map((book, index) => (
               <tr key={book.id}>
-                <td>{index + 1}</td>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.publishedDate}</td>
                 <td>{book.isbn}</td>
-                <td className="d-md-flex gap-2">
+                <td className="d-md-flex gap-2 ">
                   <button
-                    className="btn btn-secondary px-4"
+                    className="btn btn-secondary px-4 "
                     onClick={() => props.edit(book)}
                   >
-                    {" "}
                     Edit
                   </button>
                   <button
@@ -45,7 +42,7 @@ function BooksList(props) {
         </table>
       ) : (
         <div>
-          <h2 className="text-center">No books Data avilable</h2>
+          <h2 className="text-secondary">No books Data available</h2>
         </div>
       )}
     </div>

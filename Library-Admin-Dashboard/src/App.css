@@ -5,9 +5,21 @@
 .btn1 {
   width: 400px;
 }
-.table {
-  background-color: aqua;
-}
+
 * {
   font-family: sans-serif;
+}
+
+.active {
+  color: white;
+  text-decoration: none;
+}
+.p {
+  color: white;
+  text-decoration: none;
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }

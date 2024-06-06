@@ -25,10 +25,16 @@ function Books() {
     publishedDate: editUser?.publishedDate,
     isbn: editUser?.isbn,
   };
-  const validation = yup.object({
+  const validation = yup.object().shape({
     title: yup.string().required("* Title is required"),
     author: yup.string().required("* Author is required"),
-    publishedDate: yup.date().required("* Published Date is required"),
+    publishedDate: yup
+      .date()
+      .max(
+        new Date(Date.now()),
+        "* Published Date Must not greater then todays date"
+      )
+      .required("* Published Date is required"),
     isbn: yup
       .string()
       .min(12, "* min 12 Char")
@@ -53,7 +59,7 @@ function Books() {
   const edit = (values) => {
     const editedBook = books.map((book) => {
       if (book.id == values.id) {
-        return values;
+        return { ...values, ["id"]: values.id };
       }
       return book;
     });
@@ -63,7 +69,10 @@ function Books() {
 
   return (
     <Container fixed>
-      <div className="d-md-flex justify-content-around">
+      <h1 className="fw-bold bg-success rounded-2 text-center mt-3">
+        Books Details
+      </h1>
+      <div className="d-flex justify-content-center gap-5 flex-wrap mt-5">
         <div>
           <Formik
             initialValues={editUser ? editValues : initialSchema}
@@ -138,7 +147,7 @@ function Books() {
             </Form>
           </Formik>
         </div>
-        <div>
+        <div className="mt-3">
           <BooksList
             data={books}
             delete={Delete}
