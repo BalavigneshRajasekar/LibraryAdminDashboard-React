@@ -4,12 +4,16 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
 import AuthorList from "./AuthorList";
+import WestIcon from "@mui/icons-material/West";
+import { useNavigate } from "react-router-dom";
 
 function Author() {
-  const [authors, setAuthors] = useState([]);
-  const [id, setId] = useState(0);
-  const [editAuthor, setEditAuthor] = useState(null);
+  const [authors, setAuthors] = useState([]); // Hold all the authors details
+  const [id, setId] = useState(0); // In order to set id for each authors
+  const [editAuthor, setEditAuthor] = useState(null); //This state will hold the value which we going to edit
+  const navigate = useNavigate();
 
+  //Here used the useFormik Hook to achieve the validation of the form
   const formik = useFormik({
     initialValues: {
       id: "",
@@ -70,6 +74,14 @@ function Author() {
 
   return (
     <Container fixed>
+      <Button
+        className="mt-3"
+        variant="outlined"
+        startIcon={<WestIcon></WestIcon>}
+        onClick={() => navigate("/")}
+      >
+        Go back
+      </Button>
       <h1 className="fw-bold bg-success rounded-2 text-center mt-3">
         Author Details
       </h1>

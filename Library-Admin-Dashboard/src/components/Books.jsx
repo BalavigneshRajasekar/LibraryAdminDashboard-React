@@ -3,12 +3,14 @@ import * as yup from "yup";
 import React, { useState } from "react";
 import "../App.css";
 import BooksList from "./BooksList";
-import { Container, Paper } from "@mui/material";
+import { Container, Button } from "@mui/material";
+import WestIcon from "@mui/icons-material/West";
+import { useNavigate } from "react-router-dom";
 function Books() {
-  const [books, setBooks] = useState([]);
-  const [id, setId] = useState(0);
+  const [books, setBooks] = useState([]); // Hold all the books details
+  const [id, setId] = useState(0); // help us to add the id for each books
   const [editUser, setEditUser] = useState(null); //Contain the book which is going to edit
-
+  const navigate = useNavigate();
   //Initial Schema
   const initialSchema = {
     id: "",
@@ -25,6 +27,7 @@ function Books() {
     publishedDate: editUser?.publishedDate,
     isbn: editUser?.isbn,
   };
+  //Validation for each fields
   const validation = yup.object().shape({
     title: yup.string().required("* Title is required"),
     author: yup.string().required("* Author is required"),
@@ -38,6 +41,7 @@ function Books() {
     isbn: yup
       .string()
       .min(12, "* min 12 Char")
+      .max(12, "* max 12 Char")
 
       .required("* ISBN is required"),
   });
@@ -69,6 +73,14 @@ function Books() {
 
   return (
     <Container fixed>
+      <Button
+        onClick={() => navigate("/")}
+        className="mt-3"
+        variant="outlined"
+        startIcon={<WestIcon></WestIcon>}
+      >
+        Go back
+      </Button>
       <h1 className="fw-bold bg-success rounded-2 text-center mt-3">
         Books Details
       </h1>

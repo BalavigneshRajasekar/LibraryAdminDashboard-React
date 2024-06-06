@@ -15,7 +15,12 @@ function Nav() {
         <AppBar position="static">
           <Toolbar>
             <MenuBookIcon sx={{ marginRight: 2 }}></MenuBookIcon>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1 }}
+              onClick={() => navigate("/")}
+            >
               Library Dashboard
             </Typography>
             <Button color="inherit" onClick={() => navigate("/Books")}>
